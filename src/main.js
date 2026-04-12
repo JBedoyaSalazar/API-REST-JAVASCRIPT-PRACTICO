@@ -1,6 +1,15 @@
+const api = axios.create({
+    baseURL: 'https://api.themoviedb.org/3',
+    headers:{
+        'Content-Type': 'application/json;charset=utf-8'
+    },
+    params: {
+        'api_key': API_KEY
+    }
+})
+
 async function getTrendingMoviesPreview() {
-    const res = await fetch('https://api.themoviedb.org/3/trending/movie/day?api_key=' + API_KEY)
-    const data = await res.json()
+    const { data } = await api('/trending/movie/day')
 
     const movies = data.results
 
@@ -18,7 +27,8 @@ async function getTrendingMoviesPreview() {
 
         const movieImg = document.createElement('img')
         movieImg.classList.add(
-            'h-[225px]',
+            'aspect-[2/3]',
+            'h-auto',
             'w-full',
             'object-cover',
             'rounded-lg',
@@ -39,3 +49,33 @@ async function getTrendingMoviesPreview() {
 }
 
 getTrendingMoviesPreview()
+
+async function getCategoriesPreview() {
+    const {data} = await api('/genre/movie/list')
+
+    const categories = data.genres
+
+    categories.forEach(category => {
+        const previewCategoriesContainer = document.querySelector('#categoriesPreview #categoriesPreview-list')
+        const categoryContainer = document.createElement('div')
+        const categoryTitle = document.createElement('h3')
+        categoryTitle.classList.add(
+            'category-title',
+            'mb-2',
+            'cursor-pointer',
+            'flex',
+            'items-center',
+            'whitespace-nowrap',
+            'overflow-hidden',
+            'text-ellipsis'
+        )
+        categoryTitle.setAttribute('id', category.id)
+        const categoryTitleText = document.createTextNode(category.name)
+
+        categoryTitle.appendChild(categoryTitleText)
+        categoryContainer.appendChild(categoryTitle)
+        previewCategoriesContainer.appendChild(categoryContainer)
+    });
+}
+
+getCategoriesPreview()
