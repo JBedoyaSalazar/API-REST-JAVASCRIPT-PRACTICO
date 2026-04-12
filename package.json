@@ -1,0 +1,17 @@
+{
+  "name": "api-rest-javascript-practico",
+  "version": "1.0.0",
+  "description": "'Curso practico de API REST'",
+  "license": "MIT",
+  "author": "Jefred Bedoya <jefred03salazar@gmail.com>",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.2.2",
+    "tailwindcss": "^4.2.2"
+  }
+}
