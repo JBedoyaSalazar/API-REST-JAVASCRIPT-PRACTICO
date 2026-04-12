@@ -31,3 +31,6 @@ Thumbs.db
 # Archivos temporales
 *.tmp
 *.swp
+
+# Secrets.js (API KEY)
+src/secrets.js
