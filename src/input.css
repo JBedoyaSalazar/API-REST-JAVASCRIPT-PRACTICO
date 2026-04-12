@@ -1,16 +1,76 @@
 @import 'tailwindcss';
 
 @theme {
-    --color-brand: #8b5cf6;
-    --font-sans: 'Inter', sans-serif
+  --color-bg-base: #09090b;
+  --color-bg-surface: #18181b;
+  --color-border-subtle: #27272a;
+  
+  --color-text-main: #fafafa;
+  --color-text-muted: #a1a1aa;
+  
+  --font-titles: 'Dosis', sans-serif;
+  --font-text: 'Red Hat Display', sans-serif;
 }
 
-@layer base{
-    body{
-        @apply bg-slate-900 text-slate-100 font-sans p-6
-    }
+@layer base {
+  html {
+    @apply bg-bg-base;
+  }
 
-    h1{
-        @apply text-3xl font-bold italic text-center
-    }
+  body {
+    @apply flex flex-col min-h-screen bg-bg-base text-text-main font-text font-normal text-base md:text-lg m-0 pt-1 p-0;
+  }
+
+  h1, h2, h3 {
+    @apply m-0 p-0 text-text-main;
+  }
+
+  h1, h2 {
+    @apply text-2xl md:text-4xl font-titles font-extrabold m-0 p-0;
+  }
+
+  h2 {
+    @apply text-xl md:text-2xl text-center;
+  }
+
+  h3 {
+    @apply font-medium text-base md:text-xl;
+  }
+
+  input {
+    @apply bg-bg-surface text-text-main border border-border-subtle text-lg pl-4 rounded-md focus:outline-none focus:ring-1 focus:ring-text-muted;
+  }
+
+  input::placeholder {
+    @apply text-text-muted font-text;
+  }
+
+  button {
+    @apply bg-text-main text-bg-base border-none font-medium text-sm cursor-pointer rounded-md hover:opacity-90;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@layer components {
+  /* Generic ID Colors for Categories - Unified Monochromatic */
+  .category-title::before {
+    content: '••••';
+    color: transparent;
+    @apply bg-text-muted rounded-[8px] mr-2 inline-block w-2 h-2 leading-none;
+  }
+  
+  .header-container--long {
+    background-image: url('https://pics.filmaffinity.com/Deadpool-777527803-large.jpg');
+    background: linear-gradient(180deg, rgba(9, 9, 11, 0.75) 19.27%, rgba(9, 9, 11, 0) 29.17%), url('https://pics.filmaffinity.com/Deadpool-777527803-large.jpg');
+    @apply bg-cover h-[480px] fixed top-0 w-full;
+  }
 }
