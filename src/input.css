@@ -74,8 +74,7 @@
   }
 
   .header-container--long {
-    background-image: url('https://pics.filmaffinity.com/Deadpool-777527803-large.jpg');
-    background: linear-gradient(180deg, rgba(9, 9, 11, 0.75) 19.27%, rgba(9, 9, 11, 0) 29.17%), url('https://pics.filmaffinity.com/Deadpool-777527803-large.jpg');
-    @apply bg-cover h-[480px] fixed top-0 w-full;
+    background: linear-gradient(180deg, rgba(9, 9, 11, 0.75) 19.27%, rgba(9, 9, 11, 0) 29.17%), url('https://image.tmdb.org/t/p/w500/adOzdWS35KAo21r9R4BuFCkLer6.jpg');
+    @apply bg-cover bg-center h-[480px] fixed top-0;
   }
 }

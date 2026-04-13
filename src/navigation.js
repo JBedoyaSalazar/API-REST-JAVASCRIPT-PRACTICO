@@ -116,6 +116,11 @@ function movieDetailsPage() {
     categoriesPreviewSection.classList.add('hidden')
     genericListSection.classList.add('hidden')
     movieDetailSection.classList.remove('hidden')
+
+    const [_, hash] = location.hash.split('=')
+    const [id, name] = hash.split('-')
+
+    getMovieDetail(id)
 }
 
 function categoriesPage() {

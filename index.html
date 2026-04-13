@@ -52,58 +52,23 @@
         <!-- Se insertan las peliculas de la API -->
     </section>
 
-    <section id="movieDetail" class="rounded-t-2xl px-6 py-8 mt-[403px] z-10 relative bg-bg-surface w-full hidden">
-        <h1 class="inline-block w-[80%] mb-4 p-0">Deadpool</h1>
-        <span
-            class="inline-block w-[18%] font-bold text-right before:content-['★'] before:text-text-main text-text-muted before:pr-1">7.6</span>
-        <p class="mb-6 text-text-muted">
-            Wisecracking mercenary Deadpool battles the evil and powerful Cable and other bad guys to save a boy's life.
+    <section id="movieDetail" class="rounded-t-2xl px-6 py-8 mt-[403px] relative bg-bg-surface w-full hidden">
+        <h1 id="movieDetailTitle" class="inline-block w-[80%] mb-4 p-0"></h1>
+        <span id="movieDetailScore"
+            class="inline-block w-[18%] font-bold text-right before:content-['★'] before:text-text-main text-text-muted before:pr-1"></span>
+        <p id="movieDetailDescription" class="mb-6 text-text-muted">
+            <!-- Se inserta la descripcion de la API -->
         </p>
 
-        <article class="grid grid-cols-2 md:grid-cols-3 w-max mx-auto gap-x-8 gap-y-4 pb-4">
-            <div class="flex">
-                <h3 id="id28"
-                    class="category-title mb-2 cursor-pointer flex items-center whitespace-nowrap overflow-hidden text-ellipsis">
-                    Romance
-                </h3>
-            </div>
-
-            <div class="flex">
-                <h3 id="id16"
-                    class="category-title mb-2 cursor-pointer flex items-center whitespace-nowrap overflow-hidden text-ellipsis">
-                    Drama
-                </h3>
-            </div>
-
-            <div class="flex">
-                <h3 id="id14"
-                    class="category-title mb-2 cursor-pointer flex items-center whitespace-nowrap overflow-hidden text-ellipsis">
-                    Acción
-                </h3>
-            </div>
+        <article id="movieDetail-categoriesList" class="grid grid-cols-2 md:grid-cols-3 w-max mx-auto gap-x-8 gap-y-4 pb-4">
+            <!-- Se insertan las categorias de la API -->
         </article>
 
         <article class="mt-6">
             <h2 class="mb-4">Películas similares</h2>
 
-            <div class="flex overflow-x-auto no-scrollbar gap-4 pb-4 snap-x">
-                <div
-                    class="snap-start shrink-0 w-[125px] md:w-[calc(33.33%-1rem)] lg:w-[calc(14.28%-1rem)] cursor-pointer">
-                    <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-                        class="h-auto w-full object-cover rounded-lg" alt="Nombre de la película" />
-                </div>
-
-                <div
-                    class="snap-start shrink-0 w-[125px] md:w-[calc(33.33%-1rem)] lg:w-[calc(14.28%-1rem)] cursor-pointer">
-                    <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-                        class="h-auto w-full object-cover rounded-lg" alt="Nombre de la película" />
-                </div>
-
-                <div
-                    class="snap-start shrink-0 w-[125px] md:w-[calc(33.33%-1rem)] lg:w-[calc(14.28%-1rem)] cursor-pointer">
-                    <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-                        class="h-auto w-full object-cover rounded-lg" alt="Nombre de la película" />
-                </div>
+            <div id="movieDetail-similarMovies" class="flex overflow-x-auto no-scrollbar gap-4 pb-4 snap-x">
+                <!-- Se insertan las peliculas de la API -->
             </div>
         </article>
     </section>

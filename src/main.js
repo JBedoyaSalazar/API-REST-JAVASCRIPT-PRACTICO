@@ -1,6 +1,6 @@
 const api = axios.create({
     baseURL: 'https://api.themoviedb.org/3',
-    headers:{
+    headers: {
         'Content-Type': 'application/json;charset=utf-8'
     },
     params: {
@@ -9,7 +9,7 @@ const api = axios.create({
 })
 
 //Utils
-function getImagesByForEach(container, data){
+function getImagesByForEach(container, data) {
     container.innerHTML = ''
 
     data.forEach(movie => {
@@ -19,6 +19,9 @@ function getImagesByForEach(container, data){
 
         const movieContainer = document.createElement('div')
         movieContainer.classList.add('cursor-pointer')
+        movieContainer.addEventListener('click', () => {
+            location.hash = `#movie=${movie.id}-${movie.title}`
+        })
 
         if (container.classList.contains('flex')) {
             movieContainer.classList.add(
@@ -52,7 +55,7 @@ function getImagesByForEach(container, data){
     });
 }
 
-function createCategories(container,data){
+function createCategories(container, data) {
     container.innerHTML = ''
 
     data.forEach(category => {
@@ -90,16 +93,16 @@ async function getTrendingMoviesPreview() {
 }
 
 async function getCategoriesPreview() {
-    const {data} = await api('/genre/movie/list')
+    const { data } = await api('/genre/movie/list')
 
     const categories = data.genres
 
     createCategories(categoriesPreviewList, categories)
 }
 
-async function getMoviesByCategory(id){
+async function getMoviesByCategory(id) {
 
-    const { data } = await api('discover/movie',{
+    const { data } = await api('discover/movie', {
         params: {
             with_genres: id
         }
@@ -110,8 +113,8 @@ async function getMoviesByCategory(id){
     getImagesByForEach(genericListSection, movies)
 }
 
-async function getMoviesBySearch(query){
-    const { data } = await api('/search/movie',{
+async function getMoviesBySearch(query) {
+    const { data } = await api('/search/movie', {
         params: {
             query,
         }
@@ -128,4 +131,30 @@ async function getTrendingMovies() {
     const movies = data.results
 
     getImagesByForEach(genericListContainer, movies)
+}
+
+async function getMovieDetail(id) {
+    const { data: movie } = await api(`/movie/${id}`)
+
+    const movieImgUrl = 'https://image.tmdb.org/t/p/w500' + movie.poster_path
+    headerSection.style.backgroundImage = `url(${movieImgUrl})`
+
+    movieDetailTitle.innerText = movie.title
+    movieDetailDescription.innerText = movie.overview
+    movieDetailScore.innerText = movie.vote_average.toFixed(1)
+
+    createCategories(movieDetailCategoriesList, movie.genres)
+
+    getRelatedMoviedId(id)
+}
+
+async function getRelatedMoviedId(id){
+
+    movieDetailSimilarMoviesContainer.innerHTML = ''
+
+    const { data } = await api(`/movie/${id}/similar`)
+
+    const movies = data.results
+
+    getImagesByForEach(movieDetailSimilarMoviesContainer, movies)
 }
