@@ -4,10 +4,10 @@
   --color-bg-base: #09090b;
   --color-bg-surface: #18181b;
   --color-border-subtle: #27272a;
-  
+
   --color-text-main: #fafafa;
   --color-text-muted: #a1a1aa;
-  
+
   --font-titles: 'Dosis', sans-serif;
   --font-text: 'Red Hat Display', sans-serif;
 }
@@ -21,11 +21,14 @@
     @apply flex flex-col min-h-screen bg-bg-base text-text-main font-text font-normal text-base md:text-lg m-0 pt-1 p-0;
   }
 
-  h1, h2, h3 {
+  h1,
+  h2,
+  h3 {
     @apply m-0 p-0 text-text-main;
   }
 
-  h1, h2 {
+  h1,
+  h2 {
     @apply text-2xl md:text-4xl font-titles font-extrabold m-0 p-0;
   }
 
@@ -54,6 +57,7 @@
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -61,13 +65,14 @@
 }
 
 @layer components {
+
   /* Generic ID Colors for Categories - Unified Monochromatic */
   .category-title::before {
     content: '••••';
     color: transparent;
     @apply bg-text-muted rounded-[8px] mr-2 inline-block w-2 h-2 leading-none;
   }
-  
+
   .header-container--long {
     background-image: url('https://pics.filmaffinity.com/Deadpool-777527803-large.jpg');
     background: linear-gradient(180deg, rgba(9, 9, 11, 0.75) 19.27%, rgba(9, 9, 11, 0) 29.17%), url('https://pics.filmaffinity.com/Deadpool-777527803-large.jpg');

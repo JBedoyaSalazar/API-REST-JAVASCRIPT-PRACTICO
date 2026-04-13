@@ -1,5 +1,5 @@
 searchFormButton.addEventListener('click', () => {
-    location.hash = '#search='
+    location.hash = `#search=${searchInput.value}`
 })
 
 trendingButton.addEventListener('click', () => {
@@ -7,7 +7,7 @@ trendingButton.addEventListener('click', () => {
 })
 
 backButton.addEventListener('click', () => {
-    location.hash = '#home'
+    history.back() 
 })
 
 window.addEventListener('load', navigatorPage, false)
@@ -73,6 +73,8 @@ function trendsPage() {
     categoriesPreviewSection.classList.add('hidden')
     genericListSection.classList.remove('hidden')
     movieDetailSection.classList.add('hidden')
+
+    getTrendingMovies()
 }
 
 function searchPage() {
@@ -91,6 +93,11 @@ function searchPage() {
     categoriesPreviewSection.classList.add('hidden')
     genericListSection.classList.remove('hidden')
     movieDetailSection.classList.add('hidden')
+
+    const [_, query] = location.hash.split('=')
+    headerCategoryTitle.innerText = `Resultados para: ${query}`
+
+    getMoviesBySearch(query)
 }
 
 function movieDetailsPage() {

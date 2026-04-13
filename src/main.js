@@ -12,7 +12,11 @@ const api = axios.create({
 function getImagesByForEach(container, data){
     container.innerHTML = ''
 
-    data.forEach(data => {
+    data.forEach(movie => {
+        if (!movie.poster_path) {
+            return;
+        }
+
         const movieContainer = document.createElement('div')
         movieContainer.classList.add('cursor-pointer')
 
@@ -40,8 +44,8 @@ function getImagesByForEach(container, data){
             'cursor-pointer'
         )
 
-        movieImg.setAttribute('alt', data.title)
-        movieImg.setAttribute('src', 'https://image.tmdb.org/t/p/w300' + data.poster_path)
+        movieImg.setAttribute('alt', movie.title)
+        movieImg.setAttribute('src', 'https://image.tmdb.org/t/p/w300' + movie.poster_path)
 
         movieContainer.appendChild(movieImg)
         container.appendChild(movieContainer)
@@ -106,3 +110,22 @@ async function getMoviesByCategory(id){
     getImagesByForEach(genericListSection, movies)
 }
 
+async function getMoviesBySearch(query){
+    const { data } = await api('/search/movie',{
+        params: {
+            query,
+        }
+    })
+
+    const movies = data.results
+
+    getImagesByForEach(genericListSection, movies)
+}
+
+async function getTrendingMovies() {
+    const { data } = await api('/trending/movie/day')
+
+    const movies = data.results
+
+    getImagesByForEach(genericListContainer, movies)
+}
