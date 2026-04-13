@@ -13,40 +13,7 @@ async function getTrendingMoviesPreview() {
 
     const movies = data.results
 
-    trendingPreviewMoviesContainer.innerHTML = ''
-
-    movies.forEach(movie => {
-        const movieContainer = document.createElement('div')
-        movieContainer.classList.add(
-            'snap-start',
-            'flex-shrink-0',
-            'w-[150px]',
-            'md:w-[calc(33.33%-1rem)]',
-            'lg:w-[calc(14.28%-1rem)]',
-            'cursor-pointer'
-        )
-
-        const movieImg = document.createElement('img')
-        movieImg.classList.add(
-            'aspect-[2/3]',
-            'h-auto',
-            'w-full',
-            'object-cover',
-            'rounded-lg',
-            'hover:scale-110',
-            'transition',
-            'duration-300',
-            'ease-in-out',
-            'cursor-pointer'
-        )
-
-        movieImg.setAttribute('alt', movie.title)
-        movieImg.setAttribute('src', 'https://image.tmdb.org/t/p/w300' + movie.poster_path)
-
-        movieContainer.appendChild(movieImg)
-        trendingPreviewMoviesContainer.appendChild(movieContainer)
-    });
-
+    getImagesByForEach(trendingPreviewMoviesContainer, movies)
 }
 
 async function getCategoriesPreview() {
@@ -70,10 +37,65 @@ async function getCategoriesPreview() {
             'text-ellipsis'
         )
         categoryTitle.setAttribute('id', category.id)
+        categoryTitle.addEventListener('click', () => {
+            location.hash = `#category=${category.id}-${category.name}`
+        })
         const categoryTitleText = document.createTextNode(category.name)
 
         categoryTitle.appendChild(categoryTitleText)
         categoryContainer.appendChild(categoryTitle)
         categoriesPreviewList.appendChild(categoryContainer)
+    });
+}
+
+async function getMoviesByCategory(id){
+
+    const { data } = await api('discover/movie',{
+        params: {
+            with_genres: id
+        }
+    })
+
+    const movies = data.results
+
+    getImagesByForEach(genericListSection, movies)
+}
+
+function getImagesByForEach(container, data){
+    container.innerHTML = ''
+
+    data.forEach(data => {
+        const movieContainer = document.createElement('div')
+        movieContainer.classList.add('cursor-pointer')
+
+        if (container.classList.contains('flex')) {
+            movieContainer.classList.add(
+                'snap-start',
+                'flex-shrink-0',
+                'w-[150px]',
+                'md:w-[calc(33.33%-1rem)]',
+                'lg:w-[calc(14.28%-1rem)]'
+            )
+        }
+
+        const movieImg = document.createElement('img')
+        movieImg.classList.add(
+            'aspect-[2/3]',
+            'h-auto',
+            'w-full',
+            'object-cover',
+            'rounded-lg',
+            'hover:scale-110',
+            'transition',
+            'duration-300',
+            'ease-in-out',
+            'cursor-pointer'
+        )
+
+        movieImg.setAttribute('alt', data.title)
+        movieImg.setAttribute('src', 'https://image.tmdb.org/t/p/w300' + data.poster_path)
+
+        movieContainer.appendChild(movieImg)
+        container.appendChild(movieContainer)
     });
 }

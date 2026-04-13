@@ -34,6 +34,8 @@ function homePage() {
 
     console.log('Home')
 
+    headerTitle.innerText = 'The best movies'
+
     headerSection.classList.remove('header-container--long')
     headerSection.style.background = ''
     backButton.classList.add('hidden')
@@ -124,4 +126,11 @@ function categoriesPage() {
     categoriesPreviewSection.classList.add('hidden')
     genericListSection.classList.remove('hidden')
     movieDetailSection.classList.add('hidden')
+
+    const [_, hash] = location.hash.split('=')
+    const [id, name] = hash.split('-')
+
+    headerCategoryTitle.innerText = name
+
+    getMoviesByCategory(id)
 }
