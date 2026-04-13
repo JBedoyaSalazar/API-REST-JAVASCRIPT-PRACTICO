@@ -18,20 +18,20 @@
 
 
     <header id="header" class="px-6 pt-10">
-        <span class="font-medium text-4xl mb-4 cursor-pointer inline-block hidden">&lt;</span>
-        <h1 class="mb-4 italic">THE BEST MOVIES</h1>
-        <h2 class="mb-4 hidden">Acción</h2>
+        <span id="backButton" class="font-medium text-4xl mb-4 cursor-pointer md:inline-block">&lt;</span>
+        <h1 id="headerTitle" class="mb-4 italic">THE BEST MOVIES</h1>
+        <h2 id="headerCategoryTitle" class="mb-4">Acción</h2>
 
         <form id="searchForm" class="flex items-center justify-center w-full flex-nowrap">
             <input type="text" placeholder="Vengadores" class="h-12 w-full rounded-l-lg" />
-            <button class="w-14 h-12 rounded-r-lg">🔍</button>
+            <button id="searchFormButton" class="w-14 h-12 rounded-r-lg">🔍</button>
         </form>
     </header>
 
     <section id="trendingPreview" class="mt-12 px-6 lg:w-[80%] lg:mx-auto">
         <div class="flex items-center justify-between mb-6">
             <h2 class="trendingPreview-title">Tendencias</h2>
-            <button class="rounded-lg h-8 w-[72px]">Ver más</button>
+            <button id="trendingButton" class="rounded-lg h-8 w-[72px]">Ver más</button>
         </div>
 
         <article id="trendingPreview-movieList"
@@ -48,7 +48,7 @@
         </article>
     </section>
 
-    <section id="genericList" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4 px-6 py-8 hidden">
+    <section id="genericList" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4 px-6 py-8">
         <div class="cursor-pointer">
             <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
                 class="w-full h-auto object-cover rounded-lg" alt="Nombre de la película" />
@@ -65,7 +65,7 @@
         </div>
     </section>
 
-    <section id="movieDetail" class="rounded-t-2xl px-6 py-8 mt-[403px] z-10 absolute bg-bg-surface w-full hidden">
+    <section id="movieDetail" class="rounded-t-2xl px-6 py-8 mt-[403px] z-10 relative bg-bg-surface w-full hidden">
         <h1 class="inline-block w-[80%] mb-4 p-0">Deadpool</h1>
         <span
             class="inline-block w-[18%] font-bold text-right before:content-['★'] before:text-text-main text-text-muted before:pr-1">7.6</span>
@@ -103,19 +103,19 @@
                 <div
                     class="snap-start shrink-0 w-[125px] md:w-[calc(33.33%-1rem)] lg:w-[calc(14.28%-1rem)] cursor-pointer">
                     <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-                        class="aspect-[2/3] h-auto w-full object-cover rounded-lg" alt="Nombre de la película" />
+                        class="h-auto w-full object-cover rounded-lg" alt="Nombre de la película" />
                 </div>
 
                 <div
                     class="snap-start shrink-0 w-[125px] md:w-[calc(33.33%-1rem)] lg:w-[calc(14.28%-1rem)] cursor-pointer">
                     <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-                        class="aspect-[2/3] h-auto w-full object-cover rounded-lg" alt="Nombre de la película" />
+                        class="h-auto w-full object-cover rounded-lg" alt="Nombre de la película" />
                 </div>
 
                 <div
                     class="snap-start shrink-0 w-[125px] md:w-[calc(33.33%-1rem)] lg:w-[calc(14.28%-1rem)] cursor-pointer">
                     <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-                        class="aspect-[2/3] h-auto w-full object-cover rounded-lg" alt="Nombre de la película" />
+                        class="h-auto w-full object-cover rounded-lg" alt="Nombre de la película" />
                 </div>
             </div>
         </article>
@@ -127,8 +127,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./src/secrets.js"></script>
+    <script src="./src/nodes.js"></script>
     <script src="./src/main.js"></script>
     <script src="./src/navigation.js"></script>
+
 </body>
 
 </html>
