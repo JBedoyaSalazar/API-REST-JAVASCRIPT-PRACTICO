@@ -16,13 +16,13 @@ function navigatorPage() {
     } else {
         homePage()
     }
-
-    location.hash
 }
 
 
 function homePage() {
     console.log('Home')
+    getTrendingMoviesPreview()
+    getCategoriesPreview()
 }
 
 function trendsPage() {

@@ -48,8 +48,6 @@ async function getTrendingMoviesPreview() {
 
 }
 
-getTrendingMoviesPreview()
-
 async function getCategoriesPreview() {
     const {data} = await api('/genre/movie/list')
 
@@ -77,5 +75,3 @@ async function getCategoriesPreview() {
         previewCategoriesContainer.appendChild(categoryContainer)
     });
 }
-
-getCategoriesPreview()
