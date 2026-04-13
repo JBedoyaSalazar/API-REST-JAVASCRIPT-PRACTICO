@@ -28,6 +28,8 @@ function navigatorPage() {
     } else {
         homePage()
     }
+
+    document.documentElement.scrollTop = 0
 }
 
 function homePage() {
@@ -130,7 +132,13 @@ function categoriesPage() {
     const [_, hash] = location.hash.split('=')
     const [id, name] = hash.split('-')
 
-    headerCategoryTitle.innerText = name
+    if(!name.includes('%20')){
+      headerCategoryTitle.innerText = name  
+    }else{
+        const [primeraParte, segundaParte] = name.split('%20')
+        headerCategoryTitle.innerText = `${primeraParte} ${segundaParte}`
+    }
+    
 
     getMoviesByCategory(id)
 }

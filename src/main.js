@@ -8,59 +8,7 @@ const api = axios.create({
     }
 })
 
-async function getTrendingMoviesPreview() {
-    const { data } = await api('/trending/movie/day')
-
-    const movies = data.results
-
-    getImagesByForEach(trendingPreviewMoviesContainer, movies)
-}
-
-async function getCategoriesPreview() {
-    const {data} = await api('/genre/movie/list')
-
-    const categories = data.genres
-
-    categoriesPreviewList.innerHTML = ''
-
-    categories.forEach(category => {
-        const categoryContainer = document.createElement('div')
-        const categoryTitle = document.createElement('h3')
-        categoryTitle.classList.add(
-            'category-title',
-            'mb-2',
-            'cursor-pointer',
-            'flex',
-            'items-center',
-            'whitespace-nowrap',
-            'overflow-hidden',
-            'text-ellipsis'
-        )
-        categoryTitle.setAttribute('id', category.id)
-        categoryTitle.addEventListener('click', () => {
-            location.hash = `#category=${category.id}-${category.name}`
-        })
-        const categoryTitleText = document.createTextNode(category.name)
-
-        categoryTitle.appendChild(categoryTitleText)
-        categoryContainer.appendChild(categoryTitle)
-        categoriesPreviewList.appendChild(categoryContainer)
-    });
-}
-
-async function getMoviesByCategory(id){
-
-    const { data } = await api('discover/movie',{
-        params: {
-            with_genres: id
-        }
-    })
-
-    const movies = data.results
-
-    getImagesByForEach(genericListSection, movies)
-}
-
+//Utils
 function getImagesByForEach(container, data){
     container.innerHTML = ''
 
@@ -99,3 +47,62 @@ function getImagesByForEach(container, data){
         container.appendChild(movieContainer)
     });
 }
+
+function createCategories(container,data){
+    container.innerHTML = ''
+
+    data.forEach(category => {
+        const categoryContainer = document.createElement('div')
+        const categoryTitle = document.createElement('h3')
+        categoryTitle.classList.add(
+            'category-title',
+            'mb-2',
+            'cursor-pointer',
+            'flex',
+            'items-center',
+            'whitespace-nowrap',
+            'overflow-hidden',
+            'text-ellipsis'
+        )
+        categoryTitle.setAttribute('id', category.id)
+        categoryTitle.addEventListener('click', () => {
+            location.hash = `#category=${category.id}-${category.name}`
+        })
+        const categoryTitleText = document.createTextNode(category.name)
+
+        categoryTitle.appendChild(categoryTitleText)
+        categoryContainer.appendChild(categoryTitle)
+        container.appendChild(categoryContainer)
+    });
+}
+
+//API CALLS
+async function getTrendingMoviesPreview() {
+    const { data } = await api('/trending/movie/day')
+
+    const movies = data.results
+
+    getImagesByForEach(trendingPreviewMoviesContainer, movies)
+}
+
+async function getCategoriesPreview() {
+    const {data} = await api('/genre/movie/list')
+
+    const categories = data.genres
+
+    createCategories(categoriesPreviewList, categories)
+}
+
+async function getMoviesByCategory(id){
+
+    const { data } = await api('discover/movie',{
+        params: {
+            with_genres: id
+        }
+    })
+
+    const movies = data.results
+
+    getImagesByForEach(genericListSection, movies)
+}
+
