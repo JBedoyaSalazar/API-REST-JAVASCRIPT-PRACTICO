@@ -33,4 +33,4 @@ Thumbs.db
 *.swp
 
 # Secrets.js (API KEY)
-src/secrets.js
+# src/secrets.js
